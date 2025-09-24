@@ -1,5 +1,5 @@
 blueprint:
-  name: Paralelo Virtual
+  name: Paralelo Virtual - Toggle
   description: Acenda/Apaga todos os switchs/lights do grupo simultaneamente
   domain: automation
   input:
@@ -24,7 +24,7 @@ conditions:
 action:
   - service: homeassistant.toggle
     target:
-      entity_id: !input main_entity
+      entity_id: !input entrada_switchs
   - delay:
       hours: 0
       minutes: 0
