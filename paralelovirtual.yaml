@@ -1,10 +1,10 @@
 blueprint:
   name: Paralelo Virtual
-  description: Acenda/Apaga todos os switchs/lights do grupo simultaneamente
+  description: Liga/desliga todos os switchs/lights do grupo simultaneamente - somente se o boolean Servidor de Produção estiver ativado!
   domain: automation
   input:
     entrada_switchs:
-      name: Escolha os pontos de Iluminação
+      name: Escolha as entidades do tipo switch/light para o paralelo virtual
       selector:
             entity:
               domain:
