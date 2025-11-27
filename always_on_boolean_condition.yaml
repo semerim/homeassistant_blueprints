@@ -20,7 +20,7 @@ blueprint:
               domain:
                 - sensor
                 - input_boolean
-              multiple: false
+              multiple: true
 
     update_frequency:
       name: Frequência de checagem
