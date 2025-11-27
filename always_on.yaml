@@ -1,0 +1,33 @@
+blueprint:
+  name: Always On Switch/Light
+  description: Mantém os switch/lighs sempre ligados
+  domain: automation
+  input:
+    target_switch:
+      name: Target Switch
+      description: The switch that will always be kept on.
+      selector:
+            entity:
+              domain:
+                - switch
+                - light
+              multiple: true
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: !input target_switch
+    to: "off"
+
+action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: switch.turn_on
+    entity_id: !input target_switch
