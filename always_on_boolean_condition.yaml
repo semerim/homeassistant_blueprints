@@ -46,6 +46,10 @@ conditions:
   - condition: state
     entity_id: input_boolean.servidor_de_producao
     state: "on"
+  - condition: state
+    entity_id: !input boolean_condition
+    state: "on"
+
     
 action:
   - delay:
