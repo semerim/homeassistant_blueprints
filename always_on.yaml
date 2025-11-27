@@ -4,7 +4,7 @@ blueprint:
   domain: automation
   input:
     target_switch:
-      name: Switches / Lighrs
+      name: Switches / Lights
       description: Selecione as entidades switch / light para manter sempre ligados.
       selector:
             entity:
