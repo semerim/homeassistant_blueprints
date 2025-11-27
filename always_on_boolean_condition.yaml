@@ -18,8 +18,8 @@ blueprint:
       selector:
             entity:
               domain:
-                - input_boolean
                 - sensor
+                - input_boolean
               multiple: false
 
     update_frequency:
