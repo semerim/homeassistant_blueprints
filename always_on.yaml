@@ -13,8 +13,8 @@ blueprint:
                 - light
               multiple: true
     update_frequency:
-      name: Frequência de checagem (minutos)
-      description: Frequência de checagem (minutos)
+      name: Frequência de checagem
+      description: Frequência de checagem (colocar /5 para checar de 5 em 5 minutos)
       default: "/5"
       selector:
         text:
@@ -31,7 +31,13 @@ trigger:
   - platform: time_pattern
     id: temp_update
     minutes: !input update_frequency 
-    
+
+condition:
+  condition:
+    - condition: state
+      entity_id: input_boolean.servidor_de_producao
+      state: "on"
+
 action:
   - delay:
       hours: 0
