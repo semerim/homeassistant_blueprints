@@ -1,6 +1,6 @@
 blueprint:
-  name: Always On Switch/Light
-  description: Mantém os switch/lighs sempre ligados
+  name: Always On Switch/Light - Boolean Condition
+  description: Mantém os switch/lighs sempre ligados - utiliza um Boolean como condição
   domain: automation
   input:
     target_switch:
