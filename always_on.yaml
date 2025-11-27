@@ -32,12 +32,11 @@ trigger:
     id: temp_update
     minutes: !input update_frequency 
 
-condition:
-  condition:
-    - condition: state
-      entity_id: input_boolean.servidor_de_producao
-      state: "on"
-
+conditions:
+  - condition: state
+    entity_id: input_boolean.servidor_de_producao
+    state: "on"
+    
 action:
   - delay:
       hours: 0
