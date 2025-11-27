@@ -3,15 +3,13 @@ blueprint:
   description: Mantém os switch/lighs sempre ligados - utiliza um Boolean ou Sensor como condição
   domain: automation
   input:
-    target_switch:
-      name: Switches / Lights
-      description: Selecione as entidades switch / light para manter sempre ligados.
+    update_frequency:
+      name: Frequência de checagem
+      description: Frequência de checagem (colocar /5 para checar de 5 em 5 minutos)
+      default: "/5"
       selector:
-            entity:
-              domain:
-                - switch
-                - light
-              multiple: true
+        text:
+
     boolean_condition:
       name: Boolean condition
       description: Selecione o Input Boolean para testar a condição de execução.
@@ -22,12 +20,16 @@ blueprint:
                 - input_boolean
               multiple: true
 
-    update_frequency:
-      name: Frequência de checagem
-      description: Frequência de checagem (colocar /5 para checar de 5 em 5 minutos)
-      default: "/5"
+    target_switch:
+      name: Switches / Lights
+      description: Selecione as entidades switch / light para manter sempre ligados.
       selector:
-        text:
+            entity:
+              domain:
+                - switch
+                - light
+              multiple: true
+
 
 mode: single
 max_exceeded: silent
@@ -49,7 +51,6 @@ conditions:
   - condition: state
     entity_id: !input boolean_condition
     state: "on"
-
     
 action:
   - delay:
