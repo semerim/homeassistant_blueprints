@@ -4,14 +4,20 @@ blueprint:
   domain: automation
   input:
     target_switch:
-      name: Target Switch
-      description: The switch that will always be kept on.
+      name: Switches / Lighrs
+      description: Selecione as entidades switch / light para manter sempre ligados.
       selector:
             entity:
               domain:
                 - switch
                 - light
               multiple: true
+    update_frequency:
+      name: Frequência de checagem (minutos)
+      description: Frequência de checagem (minutos)
+      default: "/5"
+      selector:
+        text:
 
 mode: single
 max_exceeded: silent
@@ -22,7 +28,10 @@ trigger:
   - platform: state
     entity_id: !input target_switch
     to: "off"
-
+  - platform: time_pattern
+    id: temp_update
+    minutes: !input update_frequency 
+    
 action:
   - delay:
       hours: 0
