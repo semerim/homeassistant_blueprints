@@ -1,0 +1,48 @@
+blueprint:
+  name: Always Off Switch/Light
+  description: Mantém os switch/lighs sempre desligados
+  domain: automation
+  input:
+    update_frequency:
+      name: Frequência de checagem
+      description: Frequência de checagem (colocar /5 para checar de 5 em 5 minutos)
+      default: "/5"
+      selector:
+        text:
+
+    target_switch:
+      name: Switches / Lights
+      description: Selecione as entidades switch / light para manter sempre desligados.
+      selector:
+            entity:
+              domain:
+                - switch
+                - light
+              multiple: true
+
+mode: single
+max_exceeded: silent
+
+trigger:
+  - platform: homeassistant
+    event: start
+  - platform: state
+    entity_id: !input target_switch
+    to: "off"
+  - platform: time_pattern
+    id: temp_update
+    minutes: !input update_frequency 
+
+conditions:
+  - condition: state
+    entity_id: input_boolean.servidor_de_producao
+    state: "on"
+    
+action:
+  - delay:
+      hours: 0
+      minutes: 0
+      seconds: 1
+      milliseconds: 0
+  - service: switch.turn_off
+    entity_id: !input target_switch
